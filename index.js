@@ -74,8 +74,7 @@ const connection = mysql.createConnection({
         LEFT JOIN department d
         on cr.dept_id = d.dept_id 
         LEFT JOIN employee em 
-        on e.manager_id = em.employ_id;`,
-        
+        on e.manager_id = em.employ_id;`,        
         (err, res) => {
             if (err) throw err;
             console.table(res);
@@ -83,5 +82,31 @@ const connection = mysql.createConnection({
         }
       );      
   };
+
+  const searchDept = () => {
+      connection.query(
+        `SELECT *
+        FROM department`,
+      (err, res) => {
+          if (err) throw(err);
+          console.table(res);
+          start()
+      });
+  };
+
+  const searchRole = () => {
+    connection.query(
+        `SELECT *
+        FROM company_roles`,
+    (err, res) => {
+        if (err) throw(err);
+        console.table(res);
+        start()
+    });
+};
+
+
+
+
   
 
