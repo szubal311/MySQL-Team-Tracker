@@ -105,6 +105,61 @@ const connection = mysql.createConnection({
     });
 };
 
+const empManagerUpdate = (employ_id, employ_role_id) => {
+    connection.query(`UPDATE employee
+                      SET employ_role_id = ?
+                      WHERE employ_id =?` , [employ_role_id, employ_id ] 
+                      
+    )};
+
+const employeeAdd = () => {
+    let questions = [
+        {
+            type: "input",
+            message: "What is the employee's first name?",
+            name: "first_name"
+        },
+
+        {
+            type: "input",
+            message: "What is the employee's last name?",
+            name: "last_name"
+        },
+
+        {
+            type: "input",
+            message: "What is the employee's title (employ_role_id)",
+            name: "roleID"
+        },
+
+        {
+            type: "input",
+            message: "What is the employee's manager's name (employ_id?",
+            name: "managerId"
+        },
+    ];
+
+    inquirer.prompt(questions).then((answer) => {
+        connection.query(
+            `INSERT INTO employee SET ?`,
+            {
+               first_name: answer.first_name,
+               last_name: answer.last_name,
+               employ_id: answer.roleId,
+               manager_id = answer.managerId,
+            },
+            (err) => {
+               if (err) throw(err);
+               empManagerUpdate(answer.roleId, answer.managerId);
+            }
+        );
+    });
+};
+
+
+
+
+
 
 
 
