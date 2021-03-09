@@ -134,7 +134,7 @@ const employeeAdd = () => {
 
         {
             type: "input",
-            message: "What is the employee's manager's name (employ_id?",
+            message: "What is the employee's manager's name (employ_id)?",
             name: "managerId"
         },
     ];
@@ -146,7 +146,7 @@ const employeeAdd = () => {
                first_name: answer.first_name,
                last_name: answer.last_name,
                employ_id: answer.roleId,
-               manager_id = answer.managerId,
+               manager_id: answer.managerId,
             },
             (err) => {
                if (err) throw(err);
@@ -155,6 +155,44 @@ const employeeAdd = () => {
         );
     });
 };
+
+const roleAdd = () => {
+    let questions = [
+        {
+            type: "input",
+            message: "What role would you like to add?",
+            name: "title"
+        },
+
+        {
+            type: "input",
+            message: "What department the role belong to?",
+            name: "deptId"
+        },
+
+        {
+            type: "input",
+            message: "What is the salary for the role?",
+            name: "salary"
+        },
+    ];
+
+    inquirer.prompt(questions).then((answer) => {
+        connection.query(
+            `INSERT INTO department SET ?`,
+            {
+               title: answer.title,
+               deptId: answer.deptId,
+               employ_id: answer.roleId,
+               salary: answer.managerId,
+            },
+            (err) => {
+               if (err) throw(err);   
+               start();           
+            }
+        );
+    });
+}
 
 
 
