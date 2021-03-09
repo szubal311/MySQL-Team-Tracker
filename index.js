@@ -53,6 +53,9 @@ const connection = mysql.createConnection({
                 case 'Add Employee Roles':
                     roleAdd();
                     break;
+                case 'Add Employee Roles':
+                    empRoleUpdate();
+                    break;
                 case 'exit':
                     connection.end();
                     break;
@@ -192,7 +195,28 @@ const roleAdd = () => {
             }
         );
     });
-}
+};
+
+const empRoleUpdate = () => {
+    let employees = searchAllEmp();
+    let empOption = employees.map(index => {
+        id:id;
+    });
+
+    inquirer.prompt(
+    {
+        type:"list",
+        name: "role id",
+        choices: empOption
+    });
+
+    connection.query(
+        `UPDATE employee
+        SET employ_role_id =?
+        WHERE employ_id =?`,
+        [employ_role_id, employ_id ]
+    );
+};
 
 
 
