@@ -1,5 +1,5 @@
-const mysql = reqire("mysql");
-const inquirer = reqire("inquirer");
+const mysql = require("mysql");
+const inquirer = require("inquirer");
 
 const connection = mysql.createConnection({
     host: 'localhost',  
@@ -8,8 +8,9 @@ const connection = mysql.createConnection({
 
     user: 'root',  
     
-    password: '',
+    password: '@!!i311C@$h*',
     database: 'employees_db',
+    insecureAuth : true
   });
 
   connection.connect(function(err) {
@@ -115,7 +116,7 @@ const empManagerUpdate = (employ_id, employ_role_id) => {
                       
     )};
 
-const employeeAdd = () => {
+const newEmpAdd = () => {
     let questions = [
         {
             type: "input",
@@ -148,12 +149,12 @@ const employeeAdd = () => {
             {
                first_name: answer.first_name,
                last_name: answer.last_name,
-               employ_id: answer.roleId,
+               employ_role_id: answer.roleID,
                manager_id: answer.managerId,
             },
             (err) => {
                if (err) throw(err);
-               empManagerUpdate(answer.roleId, answer.managerId);
+               empManagerUpdate(answer.roleID, answer.managerId);
             }
         );
     });
@@ -182,12 +183,12 @@ const roleAdd = () => {
 
     inquirer.prompt(questions).then((answer) => {
         connection.query(
-            `INSERT INTO department SET ?`,
+            `INSERT INTO company_roles SET ?`,
             {
                title: answer.title,
-               deptId: answer.deptId,
-               employ_id: answer.roleId,
-               salary: answer.managerId,
+               dept_id: answer.deptId,
+               
+               salary: answer.salary,
             },
             (err) => {
                if (err) throw(err);   
