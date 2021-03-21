@@ -9,7 +9,8 @@ User will are prompted through a series of questions to make their desired chang
 
 <img src="assets\images\cli-screenshot.jpg" alt="screenshot">
 
-## Requirements
+## Technologies
+
 Heroku
 MySQL
 node
