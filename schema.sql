@@ -60,8 +60,8 @@ FOREIGN KEY (employ_role_id) REFERENCES company_roles(role_id),
 FOREIGN KEY (manager_id) REFERENCES employee(employ_id)
 );
 
-INSERT INTO employee (first_name, last_name, employ_role_id, manager_id)
-VALUES ("Din", "Djarn", 1, null);
+INSERT INTO employee (first_name, last_name, employ_role_id)
+VALUES ("Din", "Djarn", 1);
 
 INSERT INTO employee (first_name, last_name, employ_role_id, manager_id)
 VALUES ("Wanda", "Maximoff", 2, 1);
