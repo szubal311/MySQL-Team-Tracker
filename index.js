@@ -31,7 +31,7 @@ const connection = mysql.createConnection({
                 'Add New Employee',
                 'Add Department',
                 'Add Employee Roles',
-                'exist'
+                'exit'
             ]
         })
         .then((answer) => {
@@ -54,7 +54,7 @@ const connection = mysql.createConnection({
                 case 'Add Employee Roles':
                     roleAdd();
                     break;
-                case 'Add Employee Roles':
+                case 'update Employee Roles':
                     empRoleUpdate();
                     break;
                 case 'exit':
@@ -155,6 +155,30 @@ const newEmpAdd = () => {
             (err) => {
                if (err) throw(err);
                empManagerUpdate(answer.roleID, answer.managerId);
+            }
+        );
+    });
+};
+
+const deptAdd = () => {
+    let questions = [
+        {
+            type: "input",
+            message: "What department would you like to add?",
+            name: "dept_name"
+        },
+    ]
+
+    inquirer.prompt(questions).then((answer) => {
+        connection.query(
+            `INSERT INTO department SET ?`,
+            {
+               dept_name: answer.dept_name,
+              
+            },
+            (err) => {
+               if (err) throw(err);   
+               start();           
             }
         );
     });
