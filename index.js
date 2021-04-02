@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
+require('dotenv').config()
 
 const connection = mysql.createConnection({
     host: 'localhost',  
@@ -8,7 +9,7 @@ const connection = mysql.createConnection({
 
     user: 'root',  
     
-    password: '@!!i311C@$h*',
+    password: process.env.PASSWORD,
     database: 'employees_db',
     insecureAuth : true
   });
@@ -54,9 +55,9 @@ const connection = mysql.createConnection({
                 case 'Add Employee Roles':
                     roleAdd();
                     break;
-                case 'update Employee Roles':
-                    empRoleUpdate();
-                    break;
+                // case 'update Employee Roles':
+                //     empRoleUpdate();
+                //     break;
                 case 'exit':
                     connection.end();
                     break;
@@ -109,10 +110,10 @@ const connection = mysql.createConnection({
     });
 };
 
-const empManagerUpdate = (employ_id, employ_role_id) => {
+const empManagerUpdate = (employ_id, manager_id) => {
     connection.query(`UPDATE employee
-                      SET employ_role_id = ?
-                      WHERE employ_id =?` , [employ_role_id, employ_id ] 
+                      SET manager_id = ?
+                      WHERE employ_id =?` , [manager_id, employ_id ] 
                       
     )};
 
