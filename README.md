@@ -17,4 +17,8 @@ node
 express
 inquirer
 npm
+dotenv
+
+##
+When the repo is cloned create a dotenv and add your password to run the application.
 
