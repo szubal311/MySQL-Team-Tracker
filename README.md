@@ -22,3 +22,5 @@ dotenv
 ##
 When the repo is cloned create a dotenv and add your password to run the application.
 
+## Video
+<iframe src="https://drive.google.com/file/d/1aQKLL_RcSdh1Z5hCSABqO1m2kwwfyduh/preview" width="640" height="480"></iframe>
